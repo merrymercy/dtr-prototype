@@ -4,13 +4,15 @@ we run each input as a separate process.
 
 A little ugly but effective
 """
+import gc
 import glob
+import json
 import os
 import random
 import time
 
+import numpy as np
 import torch
-import gc
 
 from common import invoke_main, read_json, write_json, prepare_out_file, check_file_exists
 
@@ -18,7 +20,6 @@ from validate_config import validate_trials_config
 from pt_trial_util import create_csv_writer
 from tqdm import tqdm
 import model_util
-import json
 
 
 def extend_simrd_config(dest_dir, sim_conf_filename, model_name, specific_params, log_name):
@@ -141,6 +142,9 @@ def run_single_measurement(model_name, produce_model, run_model, teardown, inp, 
 
     del params
 
+    batch_size = len(inp[0])
+    ips = batch_size / (end_time - start_time)
+
     result = {
         'time': end_time - start_time,
         'sync_time': end_sync - start_sync,
@@ -151,7 +155,9 @@ def run_single_measurement(model_name, produce_model, run_model, teardown, inp, 
         'base_compute_time': base_compute_time,
         'remat_compute_time': remat_compute_time,
         'search_time': search_time,
-        'cost_time': cost_time
+        'cost_time': cost_time,
+        'batch_size': batch_size,
+        'ips': ips
     }
     if use_dtr:
         result['cuda_time'] = cuda_time
@@ -205,6 +211,32 @@ def timing_loop(model_name, i, config, use_dtr,
                                          teardown, inp, criterion, extra_params=specific_params.get('extra_params', dict()), use_dtr=use_dtr, use_profiling=use_profiling)
             if j >= dry_run:
                 measurements.append(res)
+
+        # Dump results
+        model_name_replace_dict = {
+            'tv_resnet152': 'resnet152'
+        }
+
+        train_ips_list = []
+        batch_size = None
+        for res in measurements:
+            batch_size = res['batch_size']
+            train_ips_list.append(res['ips'])
+
+        out_file = "speed_results.tsv"
+        with open(out_file, "a") as fout:
+            val_dict = {
+                'network': model_name_replace_dict.get(model_name, model_name),
+                'algorithm': 'dtr',
+                'budget': specific_params['memory_budget'],
+                'batch_size': batch_size,
+                'ips': np.median(train_ips_list) if train_ips_list else -1,
+            }
+            print(val_dict)
+            fout.write(json.dumps(val_dict) + "\n")
+        print(f"save results to {out_file}")
+
+
 
     # write to csv file only when this trial is not
     # for getting a baseline memory usage

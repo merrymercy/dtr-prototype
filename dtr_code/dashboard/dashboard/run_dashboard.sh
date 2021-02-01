@@ -44,5 +44,7 @@ export BENCHMARK_DEPS=$(pwd)/shared
 source $BENCHMARK_DEPS/bash/common.sh
 include_shared_python_deps
 
+export CUDA_LAUNCH_BLOCKING=1
+
 cd $script_dir
 python3 dashboard.py --home-dir "$dashboard_home" --experiments-dir "$experiments_dir" --subsystem-dir "$subsystem_dir"

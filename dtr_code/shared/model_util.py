@@ -10,7 +10,7 @@ from torch_models import vision_models as vm
 from torch_models import treelstm
 from torch_models import unet
 from torch_models import lstm
-from torch_models import unroll_gan
+#from torch_models import unroll_gan
 from torch_models import densenet_bc
 from torch_models import inceptionv4
 from torch.utils.data import DataLoader
@@ -792,7 +792,7 @@ def prepare_unrolled_gan(batch_size, use_dtr):
 
 def prepare_model(model_name, batch_size, use_dtr=False):
     if model_name.startswith('resnet') or model_name.startswith('tv_resnet'):
-        return prepare_vision_cnn('resnet', model_name, batch_size, use_dtr)
+        return prepare_vision_cnn('resnet' if model_name.startswith('resnet') else 'tv_resnet', model_name, batch_size, use_dtr)
 
     if model_name.startswith('densenet') or model_name.startswith('tv_densenet'):
         return prepare_vision_cnn('densenet' if model_name.startswith('densenet') else 'tv_densenet', model_name, batch_size, use_dtr)

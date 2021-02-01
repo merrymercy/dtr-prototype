@@ -33,10 +33,10 @@ cd ..
 
 # Comment out if you do not want to run unroll_gan,
 # which needs higher
-git clone git@github.com:facebookresearch/higher.git
-cd higher
-pip3 install .
-~/dtr_venv/bin/pip3 install .
+#git clone git@github.com:facebookresearch/higher.git
+#cd higher
+#pip3 install .
+#~/dtr_venv/bin/pip3 install .
 
 # You can now run the experiments from the dtr_code directory with the following commands:
 # export CUDA_LAUNCH_BLOCKING=1

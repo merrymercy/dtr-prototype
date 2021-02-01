@@ -13,6 +13,8 @@ add_to_pythonpath $(realpath "$(pwd)/../../shared")
 # shared_dir=$(realpath "$(pwd)/../../shared")
 # $shared_dir/setup_treelstm.sh "$config_dir"
 
+export MKL_SERVICE_FORCE_INTEL=1
+
 python3 "run.py" "--config-dir" "$config_dir" "--output-dir" "$data_dir"
 if [ $? -ne 0 ]; then
     exit 1;
