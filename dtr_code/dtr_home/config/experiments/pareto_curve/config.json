@@ -192,8 +192,38 @@
               "type": "dtr",
               "kind": "param_sweep",
               "use_profiling": true,
-              "memory_budget": [15e9],
-              "batch_size": [64, 128, 192, 256, 320, 384, 448, 512, 576, 640, 704, 768, 832, 896, 960],
+              "memory_budget": [10e9],
+              "batch_size": [16, 32, 48, 64, 80, 96, 112, 128, 144, 160, 176, 192, 208, 224, 240, 256],
+              "extra_params": {"height": 224, "width": 224}
+            }
+        ],
+        "tv_resnet152": [
+            {
+              "type": "dtr",
+              "kind": "param_sweep",
+              "use_profiling": true,
+              "memory_budget": [10e9],
+              "batch_size": [16, 32, 48, 64, 80, 96, 112, 128, 144, 160, 176, 192, 208, 224, 240, 256],
+              "extra_params": {"height": 224, "width": 224}
+            }
+        ],
+        "tv_densenet201": [
+            {
+              "type": "dtr",
+              "kind": "param_sweep",
+              "use_profiling": true,
+              "memory_budget": [10e9],
+              "batch_size": [16, 32, 48, 64, 80, 96, 112, 128, 144, 160, 176, 192, 208, 224, 240, 256],
+              "extra_params": {"height": 224, "width": 224}
+            }
+        ],
+        "wide_resnet101_2": [
+            {
+              "type": "dtr",
+              "kind": "param_sweep",
+              "use_profiling": true,
+              "memory_budget": [10e9],
+              "batch_size": [16, 32, 48, 64, 80, 96, 112, 128, 144, 160, 176, 192, 208, 224, 240, 256],
               "extra_params": {"height": 224, "width": 224}
             }
         ],

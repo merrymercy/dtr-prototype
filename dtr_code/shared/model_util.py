@@ -135,6 +135,9 @@ def use_cudnn(model: str):
 
 
 def dispatch_by_name(model_name, stem):
+    if model_name == 'wide_resnet101_2':
+        return vm.wide_resnet101_2()
+
     if stem not in {'resnet', 'densenet', 'tv_resnet', 'tv_densenet'}:
         raise Exception('Invalid model type: {}'.format(stem))
 
@@ -796,6 +799,10 @@ def prepare_model(model_name, batch_size, use_dtr=False):
 
     if model_name.startswith('densenet') or model_name.startswith('tv_densenet'):
         return prepare_vision_cnn('densenet' if model_name.startswith('densenet') else 'tv_densenet', model_name, batch_size, use_dtr)
+
+    if model_name.startswith('wide_resnet101_2'):
+        return prepare_vision_cnn("", model_name, batch_size, use_dtr)
+
 
     if model_name.startswith('inception'):
         return prepare_inception(model_name, batch_size, use_dtr)

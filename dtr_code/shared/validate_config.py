@@ -10,6 +10,7 @@ MODELS = {
     'tv_resnet18', 'tv_resnet34', 'tv_resnet50', 'tv_resnet101', 'tv_resnet152',
     # Torchvision densenets
     'tv_densenet121', 'tv_densenet161', 'tv_densenet169', 'tv_densenet201',
+    'wide_resnet101_2',
     'inceptionv3', 'inceptionv4',
     'unet', 'lstm_encoder', 'lstm', 'gru', 'gru_encoder', 'treelstm', 'treelstm_old',
     'transformer', 'transformer_encoder',

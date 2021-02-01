@@ -98,6 +98,8 @@ def run_single_measurement(model_name, produce_model, run_model, teardown, inp, 
 
     model_mem = torch.cuda.max_memory_allocated()
 
+    optimizer = torch.optim.SGD(model[0].parameters(), 1e-3, momentum=0.9, weight_decay=1e-4)
+
     start = torch.cuda.Event(enable_timing=True)
     end = torch.cuda.Event(enable_timing=True)
 
@@ -108,7 +110,7 @@ def run_single_measurement(model_name, produce_model, run_model, teardown, inp, 
         torch.reset_profile()
     start.record()
     # with torch.autograd.profiler.profile(use_cuda=True) as prof:
-    run_model(criterion, *model, *inp)
+    run_model(criterion, *model, *inp, optimizer=optimizer)
     end.record()
     start_sync = time.time()
     torch.cuda.synchronize()
@@ -284,6 +286,8 @@ def timing_loop(model_name, i, config, use_dtr,
 
 def main(config_dir, experiment_mode, model_name, input_idx, params_file, out_file,
          trial_run=False, trial_run_outfile=None):
+    if 'DTR_MODEL_NAME' in os.environ:
+        model_name = os.environ['DTR_MODEL_NAME']
     config, msg = validate_trials_config(config_dir)
     if config is None:
         print(msg)
@@ -302,8 +306,8 @@ def main(config_dir, experiment_mode, model_name, input_idx, params_file, out_fi
 
     # handle specific params, esp. for DTR
     specific_params = read_json(cwd, params_file)
-    if 'MEMORY_BUDGET' in os.environ:
-        specific_params['memory_budget'] = float(os.environ['MEMORY_BUDGET'])
+    if 'DTR_MEMORY_BUDGET' in os.environ:
+        specific_params['memory_budget'] = float(os.environ['DTR_MEMORY_BUDGET'])
 
     assert 'batch_size' in specific_params
     if use_dtr:
