@@ -214,7 +214,8 @@ def timing_loop(model_name, i, config, use_dtr,
 
         # Dump results
         model_name_replace_dict = {
-            'tv_resnet152': 'resnet152'
+            'tv_resnet152': 'resnet152',
+            'tv_resnet50': 'resnet50',
         }
 
         train_ips_list = []
@@ -301,6 +302,9 @@ def main(config_dir, experiment_mode, model_name, input_idx, params_file, out_fi
 
     # handle specific params, esp. for DTR
     specific_params = read_json(cwd, params_file)
+    if 'MEMORY_BUDGET' in os.environ:
+        specific_params['memory_budget'] = float(os.environ['MEMORY_BUDGET'])
+
     assert 'batch_size' in specific_params
     if use_dtr:
         assert 'memory_budget' in specific_params

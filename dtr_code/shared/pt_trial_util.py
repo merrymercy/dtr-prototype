@@ -144,7 +144,7 @@ def run_trials(config_dir, python_cmd,
                     if trial_run:
                         return (False, 'Baseline failed: {}'.format(render_exception(e)))
                     log_error(experiment_name, model_name, specific_params, i, render_exception(e), path_prefix)
-                    return (True, 'successfully caught error')
+                    return (False, 'successfully caught error')
                 time.sleep(4)
             return (True, 'success')
         finally:
