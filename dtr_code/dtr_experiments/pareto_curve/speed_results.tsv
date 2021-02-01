@@ -1,3 +1,4 @@
+# dtr x resnet152
 {"network": "resnet152", "algorithm": "dtr", "budget": 5000000000.0, "batch_size": 32, "ips": 41.51721607846522}
 {"network": "resnet152", "algorithm": "dtr", "budget": 5000000000.0, "batch_size": 64, "ips": 38.17426754266271}
 {"network": "resnet152", "algorithm": "dtr", "budget": 5000000000.0, "batch_size": 96, "ips": 34.24831426307465}
@@ -39,3 +40,22 @@
 {"network": "resnet152", "algorithm": "dtr", "budget": 14000000000.0, "batch_size": 128, "ips": 40.829979666039975}
 {"network": "resnet152", "algorithm": "dtr", "budget": 15000000000.0, "batch_size": 32, "ips": 43.315337574577576}
 {"network": "resnet152", "algorithm": "dtr", "budget": 15000000000.0, "batch_size": 64, "ips": 44.405792172279654}
+
+# dtr x resnet50
+{"network": "resnet50", "algorithm": "dtr", "budget": 6000000000.0, "batch_size": 64, "ips": 103.2929935889074}
+{"network": "resnet50", "algorithm": "dtr", "budget": 6000000000.0, "batch_size": 128, "ips": 94.81341496194013}
+{"network": "resnet50", "algorithm": "dtr", "budget": 6000000000.0, "batch_size": 192, "ips": 81.97054783742172}
+{"network": "resnet50", "algorithm": "dtr", "budget": 8000000000.0, "batch_size": 64, "ips": 106.18806175024972}
+{"network": "resnet50", "algorithm": "dtr", "budget": 8000000000.0, "batch_size": 128, "ips": 101.42444206450068}
+{"network": "resnet50", "algorithm": "dtr", "budget": 8000000000.0, "batch_size": 192, "ips": 95.84577580906502}
+{"network": "resnet50", "algorithm": "dtr", "budget": 10000000000.0, "batch_size": 64, "ips": 106.64689324681403}
+{"network": "resnet50", "algorithm": "dtr", "budget": 10000000000.0, "batch_size": 128, "ips": 105.56768702607245}
+{"network": "resnet50", "algorithm": "dtr", "budget": 10000000000.0, "batch_size": 192, "ips": 98.9325696269462}
+{"network": "resnet50", "algorithm": "dtr", "budget": 12000000000.0, "batch_size": 64, "ips": 105.60134698678584}
+{"network": "resnet50", "algorithm": "dtr", "budget": 12000000000.0, "batch_size": 128, "ips": 106.60200015170113}
+{"network": "resnet50", "algorithm": "dtr", "budget": 12000000000.0, "batch_size": 192, "ips": 100.97956399443056}
+{"network": "resnet50", "algorithm": "dtr", "budget": 14000000000.0, "batch_size": 64, "ips": 104.77046862199366}
+{"network": "resnet50", "algorithm": "dtr", "budget": 14000000000.0, "batch_size": 128, "ips": 105.68880529744378}
+{"network": "resnet50", "algorithm": "dtr", "budget": 14000000000.0, "batch_size": 192, "ips": 102.32149252752798}
+{"network": "resnet50", "algorithm": "dtr", "budget": 16000000000.0, "batch_size": 64, "ips": 104.36800804351773}
+{"network": "resnet50", "algorithm": "dtr", "budget": 16000000000.0, "batch_size": 128, "ips": 105.1726866877154}
