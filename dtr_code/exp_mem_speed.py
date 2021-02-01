@@ -6,3 +6,4 @@ for model_name in ['tv_resnet50', 'tv_resnet152', 'tv_densenet201', 'wide_resnet
         os.environ['DTR_MEMORY_BUDGET'] = str(mem_budget)
         os.system('bash ./dashboard/dashboard/run_dashboard.sh dtr_home dtr_experiments')
 
+#os.system("sudo shutdown -h now")
